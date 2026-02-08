@@ -1,3 +1,36 @@
-body {
-  background-color: green;
+h1 {
+  color: #873260;
+  font-size: 40px;
+  font-family: "Pacifico", cursive;
+  text-align: center;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(4, 110px);
+  grid-template-rows: repeat(4, 110px);
+  gap: 12px;
+  padding: 20px auto;
+  justify-content: center;
+  width: fit-content;
+}
+
+.rectangular {
+  width: 100px;
+  height: 100px;
+  perspective: 1000px
+  border:;
+  display:;
+  align-items:;
+  justify-content:;
+  cursor: pointer;
+}
+
+#scoreDisplay {
+}
+
+.livesDsiplay {
+}
+
+.timeDisplay {
 }

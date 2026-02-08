@@ -1,5 +1,6 @@
-the game aim is to match cards think about it as memory cards we all used to.
-each round will have 6 cards listed.
+the aim of the game is to match cards think about it as memory cards we all used to play.
+each round will have 16 cards listed.
+it's a 4x4 structure.
 player need to press on the start button to launch the game.
 the card will flip only one time and will be counted as move 1.
 if the player get a match they automatically move to the next level.
