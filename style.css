@@ -19,24 +19,34 @@ h1 {
   padding: 20px;
   justify-content: center;
   width: fit-content;
+  margin: 0 auto;
 }
 
 .rectangular {
   width: 110px;
   height: 110px;
   background-color: #d3d3d3;
-  border: 2px solid;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: transform 0.3s;
 }
 
-#scoreDisplay {
+.flipped {
+  background-color: white;
+  transform: rotateY(180deg);
 }
 
-.livesDsiplay {
+.rectangular img {
+  width: 80%;
+}
+
+.flipped img {
+  display: block;
 }
 
 .timeDisplay {
+  cursor: pointer;
 }

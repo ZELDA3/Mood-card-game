@@ -17,7 +17,7 @@
   {
     "image": "../assets/mood4.png",
     "name": "mood4"
-  }
+  },
 
   {
     "image": "../assets/mood5.png",
@@ -38,7 +38,4 @@
     "image": "../assets/mood8.png",
     "name": "mood8"
   }
-
-
-
 ]
