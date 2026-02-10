@@ -2,6 +2,8 @@ alert("welcome to the game enjoy! zelda38")
 
 /*-------------------------------- Constants --------------------------------*/
 const MOODS = 0
+const LEVEL_ONE_SCORE = 30
+const LEVEL_TWO_SCORE = 60
 /*---------------------------- Variables (state) ----------------------------*/
 
 let rectangular = []
@@ -14,6 +16,11 @@ let MOOD_DATA
 let firstCard = null
 let secondCard = null
 let lockBoard = false
+let matchedCards = []
+let currentLevel = 1
+let timerInterval
+let timeLeft = 15
+let gameStarted = false
 
 /*------------------------ Cached Element References ------------------------*/
 const cardEls = document.querySelectorAll(".rectangular")
