@@ -12,7 +12,6 @@ let flippedCards = []
 let scoreDisplay = 0
 let liveDisplay = 0
 let MOOD_BOARD = document.querySelector("#board")
-let MOOD_DATA
 let firstCard = null
 let secondCard = null
 let lockBoard = false
@@ -30,8 +29,11 @@ const livesEl = document.querySelector(".livesDisplay")
 const timeEl = document.querySelector(".timeDisplay")
 const startBtn = document.querySelector("#start")
 const resetBtn = document.querySelector("#reset")
+const musicBtn = document.querySelector("#music")
+const levelEl = document.querySelector("#levelDisplay")
+const leaderboardBtn = document.querySelector("#leaderboard")
 
-MOOD_DATA = [
+const LEVEL_ONE_MOODS = [
   { image: "./assets/mood1.png", name: "mood1" },
   { image: "./assets/mood2.png", name: "mood2" },
   { image: "./assets/mood3.png", name: "mood3" },
@@ -42,6 +44,18 @@ MOOD_DATA = [
   { image: "./assets/mood8.png", name: "mood8" },
 ]
 
+const LEVEL_TWO_MOODS = [
+  { image: "./assets/mood1.png", name: "mood1" },
+  { image: "./assets/mood2.png", name: "mood2" },
+  { image: "./assets/mood3.png", name: "mood3" },
+  { image: "./assets/mood4.png", name: "mood4" },
+  { image: "./assets/mood5.png", name: "mood5" },
+  { image: "./assets/mood6.png", name: "mood6" },
+  { image: "./assets/mood7.png", name: "mood7" },
+  { image: "./assets/mood8.png", name: "mood8" },
+]
+
+let MOOD_DATA = [...LEVEL_ONE_MOODS]
 /*-------------------------------- Functions
 --------------------------------*/
 

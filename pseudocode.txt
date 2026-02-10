@@ -3,11 +3,12 @@ to get into the game data you need to enter a username.
 usernames are required to qualify players into entering the top 10 leaderboard.
 instructions of the game are written above the username input box.
 after reading the instructions and picking up a username the player will hit the "START GAME" button to launch the game.
+Players will have three seconds to study the cards before they are flipped over so they try to memorize their positions.
 those cards are randomized each start/reset.
 players can check their progress looking at the panel under the title which has the Score, Lives and Timer.
-if the player matched messageDisplay will show "MATCHED"
+if the player matched messageDisplay will show "MATCHED"!.
 the player need to match at least 3 pairs to get 30 in score which will upgrade them to level two.
-each round will have 16 cards listed (8 characters).
+each round will have 16 cards listed (which are doubled from the main 8 characters).
 players only get a set of 3 lives and 15sec to win each level.
 if the player loses the display will show : GAME OVER!
 if the player wins the display will show : YOU WON!
