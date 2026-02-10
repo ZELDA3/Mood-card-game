@@ -1,6 +1,8 @@
 body {
   height: 100vw;
   width: 100vw;
+  margin: 0;
+  padding: 0;
   background-color: #b77b82;
 }
 
@@ -43,7 +45,7 @@ h1 {
 }
 
 .rectangular img {
-  width: 80%;
+  width: 60%;
 }
 
 .flipped img {

@@ -122,20 +122,35 @@ function checkForMatch() {
       messageEl.textContent = "Matched!"
     }
     // and if there is no match then reset the turn and say try again//
-    resetTurn()
   } else {
     lockBoard = true
     messageEl.textContent = "Try again"
 
     // flip the cards if there is a delay//
     setTimeout(() => {
-      firstCard.classList.remove("fipped")
+      firstCard.classList.remove("flipped")
       secondCard.classList.remove("flipped")
       firstCard.innerHTML = ""
       secondCard.innerHTML = ""
+      // reset turn will flip the cards over if they did not match + clear variables to null (first+second cards) also it let the player click again on board//
+
       resetTurn()
     }, 1000)
+
+    // now we will make the live display deduct one life if not matched// also the thing we used is different than += or == now it's <= which means it's less than or equal zero = so to sum it up if your lives are 0 then display will pop a message saying no lives left // the thing after the livesDisplay mean -- to take the number and subtract 1//
+    liveDisplay--
+    if (liveDisplay <= 0) {
+      messageEl.textContent = " No Lives Left "
+      lockBoard = true
+    }
   }
+
+  render()
+}
+
+function resetTurn() {
+  ;[firstCard, secondCard] = [null, null]
+  lockBoard = false
 }
 
 // function handleMatch(event)
@@ -146,5 +161,7 @@ function checkForMatch() {
 //   if (card === mood1) return
 // }
 // function handleClick(event) {}
+
 /*----------------------------- Event Listeners -----------------------------*/
 startBtn.addEventListener("click", init)
+resetBtn.addEventListener("click", init)
