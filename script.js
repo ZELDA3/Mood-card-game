@@ -24,7 +24,6 @@ const timeEl = document.querySelector(".timeDisplay")
 const startBtn = document.querySelector("#start")
 const resetBtn = document.querySelector("#reset")
 
-
 MOOD_DATA = [
   { image: "./assets/mood1.png", name: "mood1" },
   { image: "./assets/mood2.png", name: "mood2" },
@@ -40,26 +39,26 @@ MOOD_DATA = [
 --------------------------------*/
 
 function init() {
-scoreDisplay = 0
-liveDisplay = 3
-matchedCards = []
-lockBoard = false
-firstCard = null
-secondCard = null
+  scoreDisplay = 0
+  liveDisplay = 3
+  matchedCards = []
+  lockBoard = false
+  firstCard = null
+  secondCard = null
 
   scoreEl.textContent = `Score: ${scoreDisplay}`
   livesEl.textContent = `Lives: ${liveDisplay}`
   timeEl.textContent = `Time: 15`
-// pairs and shuffle//
+  // pairs and shuffle//
   const moodPairs = [...MOOD_DATA, ...MOOD_DATA]
   board = moodPairs.sort(() => Math.random() - 0.5)
 
-//reset all cards to show the pattern//
+  //reset all cards to show the pattern//
   cardEls.forEach((card) => {
     card.classList.remove("flipped")
     card.innerHTML = ""
   })
-  messageEl.textContent ="Find the matches!" // to clear any images//
+  messageEl.textContent = "Find the matches!" // to clear any images//
 }
 //render takes the code and turn it into something the user see it also update the data and keep things in sync //
 
@@ -73,25 +72,32 @@ function render() {
 }
 // to make it work //
 init()
-// thi sprevent us from clicking if the board is locked //
+// this will prevent us from clicking if the board is locked //
 cardEls.forEach((card) => {
-card.addEventListener("click", flipCard)
+  card.addEventListener("click", flipCard)
 })
-// this thing won't allow the same matches to be cliked twice or the same card to be clicked twice//
+// this thing won't allow the same matches to be clicked twice or the same card to be clicked twice//
 function flipCard(event) {
   if (lockBoard) return
   const clickedCard = event.currentTarget
-  if (clickedCard === firstCard || clickedCard.classList.contains("flipped")) return
+  if (clickedCard === firstCard || clickedCard.classList.contains("flipped"))
+    return
+  const cardId = parseInt(clickedCard.id)
+  clickedCard.classList.add("flipped")
+  clickedCard.innerHTML = `<img src="${board[cardId].image}" alt="${board[cardId].name}">`
+
+  if (!firstCard) {
+    firstCard = clickedCard
+    firstCard.dataset.name = board[cardId].name
+  } else {
+    secondCard = clickedCard
+    secondCard.dataset.name = board[cardId].name
+    checkForMatch()
+  }
 }
 //the contain = checking if the html has this item inside another //
-
-//get the card index (the parseint) it will litlry translate the string to a number
-const cardId = parseInt(clickedCard.id)
-
-
+//get the card index (the parseint) it will literally translate the string to a number
 //now we flip the card//
-clickedCard.classList.add("flipped")
-clickedCard.innerHTML = `<img src="${board[cardId].image}" alt="${board[cardId].name}">`
 // we called the card by the image and name what we did last time was add index which it did not have //
 
 // function showCard(event) {
@@ -101,27 +107,44 @@ clickedCard.innerHTML = `<img src="${board[cardId].image}" alt="${board[cardId].
 //   }
 // }
 
+// what we are doing no wis storing the clicked card the first pair and for the second else is the second pair and check if they match true or false//
 
-//
-if (!firstCard) {
-firstCard = clickedCard
-firstCard.dataset.name = board[cardId].name
-} else {
-  secondCard = clickedCard
-  secondCard.dataset.name = board[cardId].name
-  checkForMatch()
+// we call the match function//
+function checkForMatch() {
+  const isMatch = firstCard.dataset.name === secondCard.dataset.name
+  // match found then we check if they won the game//
+  if (isMatch) {
+    scoreDisplay += 10
+    matchedCards.push(firstCard, secondCard)
+    if (matchedCards.length === cardEls.length) {
+      messageEl.textContent = "YOU WON!"
+    } else {
+      messageEl.textContent = "Matched!"
+    }
+    // and if there is no match then reset the turn and say try again//
+    resetTurn()
+  } else {
+    lockBoard = true
+    messageEl.textContent = "Try again"
+
+    // flip the cards if there is a delay//
+    setTimeout(() => {
+      firstCard.classList.remove("fipped")
+      secondCard.classList.remove("flipped")
+      firstCard.innerHTML = ""
+      secondCard.innerHTML = ""
+      resetTurn()
+    }, 1000)
+  }
 }
 
-function checkForMatch (){
+// function handleMatch(event)
 
-}
-function handleMatch(event)
-
-function handleClick(event) {
-  if (lockBoard) return
-  const card = event.target
-  if (card === mood1) return
-}
-function handleClick(event) {}
+// function handleClick(event) {
+//   if (lockBoard) return
+//   const card = event.target
+//   if (card === mood1) return
+// }
+// function handleClick(event) {}
 /*----------------------------- Event Listeners -----------------------------*/
 startBtn.addEventListener("click", init)
