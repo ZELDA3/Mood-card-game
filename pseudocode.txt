@@ -1,20 +1,17 @@
 the aim of the game is to match cards think about it as memory cards we all used to play.
-each round will have 16 cards listed.
-it's a 4x4 structure.
-player need to press on the start button to launch the game.
-the card will flip only one time and will be counted as move 1.
-if the player get a match they automatically move to the next level.
-the game only has 3 matches as for right now (6 main emoji characters).
-the card will shake if the user mismatched.
+to get into the game data you need to enter a username.
+usernames are required to qualify players into entering the top 10 leaderboard.
+instructions of the game are written above the username input box.
+after reading the instructions and picking up a username the player will hit the "START GAME" button to launch the game.
+those cards are randomized each start/reset.
+players can check their progress looking at the panel under the title which has the Score, Lives and Timer.
+if the player matched messageDisplay will show "MATCHED"
+the player need to match at least 3 pairs to get 30 in score which will upgrade them to level two.
+each round will have 16 cards listed (8 characters).
+players only get a set of 3 lives and 15sec to win each level.
 if the player loses the display will show : GAME OVER!
-upon entering the game the user will be asked to fill in their username as it will be linked to their ranks.
-the user can see all the information for the game like : score board , 3 lives , and will only have 15 seconds to answer.
-each click will be counted the less the better.
-if the player pressed on 10 times and got zero matches they lose.
-ranks are sorted into top 10 only.
-each player get to have 3 lives only.
-there are only 2 levels to pass.
-the score get updated it doesn't go back to zero.
+if the player wins the display will show : YOU WON!
+
 
 
 

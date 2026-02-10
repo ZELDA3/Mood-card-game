@@ -6,12 +6,12 @@
 ## Author
 Zainab Salman
 
-### Connect with me :
-# [Git hub] (https://github.com/ZELDA3)
+# Connect with me :
+* [Git hub] (https://github.com/ZELDA3)
 
-# [Linkedin] (https://www.linkedin.com/in/zainab-salman-832213179?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+* [Linkedin] (https://www.linkedin.com/in/zainab-salman-832213179?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
 
-# [instagram] (https://www.instagram.com/zainab.salman.380_?igsh=MWtqdTF0aXh2ZjJ5Ng==)
+* [instagram] (https://www.instagram.com/zainab.salman.380_?igsh=MWtqdTF0aXh2ZjJ5Ng==)
 
 ***
 
