@@ -60,16 +60,44 @@
         <button id="start" class="start-btn">START</button>
         <button id="reset" class="reset-btn">RESET GAME</button>
         <button id="music" class="music-btn">Music</button>
-        <button
-          id="leaderboard"
-          class="leaderboard-btn"
-          style="display: none"
-        ></button>
+        <button id="leaderboard" class="leaderboard-btn" style="display: none">
+          leaderboard
+        </button>
 
         <!-- countdown overlay-->
-        <!-- complete later -->
+      <div id="countdown-overlay" style="display: none;">
+      <div id="countdown-text">Memorize the cards</div>
+      <div id="countdown-number">3</div>
       </div>
+
+      <!-- win or lose pop up -->
+       <div id="game-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+          <h2 id="popup-title">Game Over</h2>
+          <p id="popup-message"></p>
+          <p>Final Score: <span id="final-score">0</span></p>
+          <button onclick="restartGame()">Play Again</button>
+          <button onclick="viewLeaderboard()">View Leaderboard</button>
+          <button onclick="goHome()">Back to Home</button>
+        </div>
+       </div>
     </div>
+    <script src="moodgame.js"></script>
+    <script>
+window.onload = function() {
+  const username = localStorage.getItem('moodGameUsername') || 'Guest'
+  document.getElementById('player-name').textContent = username
+}
+// navigate functions for the popup button//
+function restartGame() {
+  document.getElementById('game-popup').style.display = 'none'
+  init()
+}
+function viewLeaderboard() {
+  window.location.href = 'index.html'
+}
+    </script>
+
   </body>
 </html>
 <!-- add pop up for the developer -->
