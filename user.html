@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>USERS ENTRY</title>
     <a href="main.html" class="button"> Start Game</a>
+
     <style>
       * {
         margin: 0;
@@ -53,9 +54,134 @@
         font-size: 2rem;
       }
 
-      .
+      .instructions ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .instructions li {
+        margin-bottom: 15px;
+        padding-left: 30px;
+        position: relative;
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+
+      .instructions li::before {
+        content: icon;
+        position: absolute;
+        left: 0;
+      }
+
+      .username-section {
+        margin: 30px 0;
+        padding: 20px;
+        background: rgba(225, 82, 131, 0.1);
+        border-radius: 10px;
+      }
+      .username-section h3 {
+        color: #873260;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+      }
+
+      #username {
+        width: 300px;
+        max-width: 100%;
+        padding: 15px 20px;
+        font-size: 1.2rem;
+        border: 3px solid #4b8cec;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        text-align: center;
+        outline: none;
+        transition: all 0.3s;
+      }
+
+      #username:focus {
+        border-color: #e15283;
+      }
+
+      .btn {
+        background: linear-gradient(135deg, #e15283 0%, #9c27b0 100%);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-size: 1.3rem;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px;
+        transition: all 0.3s;
+        font-weight: bold;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+      }
+
+      .btn:active {
+        transform: translateY(-1px);
+      }
+
+      .start-btn {
+        background: linear-gradient(135deg, #4b8cec 0%, #3f51b5 100%);
+        font-size: 1.5rem;
+        padding: 18px 50px;
+        margin-top: 20px;
+      }
+
+      .developer {
+        margin-top: 40px;
+        color: #666;
+        font-style: italic;
+        padding-top: 20px;
+        border-top: 2px solid #eee;
+      }
+
+      .emoji-list {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+      }
+
+      .emoji-list span:hover {
+        transform: scale(1.3);
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px;
+        }
+        h1 {
+          font-size: 2.5rem;
+        }
+        #username {
+          width: 100%;
+        }
+        .btn {
+          width: 100%;
+          margin: 10px 0;
+        }
+      }
     </style>
-    <!-- add the username here and the user will get some instructions thi sis the only use for this page -->
+    <!-- add the username here and the user will get some instructions this is the only use for this page -->
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+    <h1> Mood Card Game</h1>
+    <div class="instructions">
+      <h2> How to Play</h2>
+      <ul>
+        <li><strong>Goal:</strong>Match all pairs of mood cards before time runs out!</li>
+        <li><strong>Memorize:</strong>You'll get 3 seconds to study all cards before they flip</li>
+        <li><strong>Match:</strong>Click two cards to reveal them , if they match you get 10 points!</li>
+        <li><strong>Level up:</strong>Score 30+ points ( 3 matches) to unlock Level 2</li>
+        <li><strong>Lives:</strong>You have 3 lives , wrong match cost 1 life</li>
+        <li><strong>Timer:</strong>15 seconds per level , beat the clock!</li>
+        <li><strong>Win:</strong>Complete both levels to rank on the leaderboard</li>
+      </ul>
+
+  </body>
 </html>
