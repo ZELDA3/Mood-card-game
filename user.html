@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>USERS ENTRY</title>
-    <a href="main.html" class="button"> Start Game</a>
+    <a href="main.html"></a>
 
     <style>
       * {
@@ -182,6 +182,57 @@
         <li><strong>Timer:</strong>15 seconds per level , beat the clock!</li>
         <li><strong>Win:</strong>Complete both levels to rank on the leaderboard</li>
       </ul>
+
+    <div class="emoji-list">
+      <span>😊</span><span>😂</span><span>🥰</span><span>😎</span><span>🤩</span><span>😜</span><span>🥳</span><span>🤗</span>
+    </div>
+  </div>
+
+  <div class="username-section">
+    <h3>Enter Your Username</h3>
+    <input type="text" id="username" placeholder="Type your username here..." maxlength="15">
+    <div>
+      <button class="btn" onclick="saveUsername()">Save username</button>
+    </div>
+  </div>
+  <button class="btn start-btn" onclick="startGame()">START GAME</button>
+
+<div class="developer">
+  <p> created with love by Zelda38 | Challange your memory skills!</p>
+  <p>Can you make it to the top of the leaderboard?</p>
+</div>
+
+<script>
+  function saveUsername() {
+    const username = document.getElementById('username').value.trim()
+    if (username) {
+      if (username.length < 3) {
+        alert ('Username must be at least 3 characters!')
+        return
+      }
+      localStorage.setItem('moodGameUsername', username)
+      alert(`Welcome, ${username}! your username has been saved`)
+    } else {
+      alert('Please enter a username to play!')
+    }
+  }
+
+  function startGame() {
+  const username = localStorage.getItem('moodGameUsername');
+            if (!username) {
+                alert('Please enter and save a username first!');
+                document.getElementById('username').focus();
+                return;
+            }
+            window.location.href = 'game.html';
+        }
+
+        window.onload = function() {
+        const savedName = localStorage.getItem('moodGameUsername')
+        if (savedName) {
+        document.getElementById('username').value = savedName
+        }}
+</script>
 
   </body>
 </html>

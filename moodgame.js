@@ -1,9 +1,10 @@
-alert("welcome to the game enjoy! zelda38")
+alert("welcome! enjoy the game")
 
 /*-------------------------------- Constants --------------------------------*/
 const MOODS = 0
 const LEVEL_ONE_SCORE = 30
 const LEVEL_TWO_SCORE = 60
+const MEMORIZE_TIME = 3000
 /*---------------------------- Variables (state) ----------------------------*/
 
 let rectangular = []
@@ -20,6 +21,7 @@ let currentLevel = 1
 let timerInterval
 let timeLeft = 15
 let gameStarted = false
+let isMemorizing = false
 
 /*------------------------ Cached Element References ------------------------*/
 const cardEls = document.querySelectorAll(".rectangular")
@@ -32,6 +34,9 @@ const resetBtn = document.querySelector("#reset")
 const musicBtn = document.querySelector("#music")
 const levelEl = document.querySelector("#levelDisplay")
 const leaderboardBtn = document.querySelector("#leaderboard")
+const countdownOverlay = document.querySelector("#countdown-overlay")
+const countdownNumber = document.querySelector("#countdown-number")
+const countdownText = document.querySelector("#countdown-text")
 
 const LEVEL_ONE_MOODS = [
   { image: "./assets/mood1.png", name: "mood1" },
@@ -43,7 +48,10 @@ const LEVEL_ONE_MOODS = [
   { image: "./assets/mood7.png", name: "mood7" },
   { image: "./assets/mood8.png", name: "mood8" },
 ]
+let MOOD_DATA = [...LEVEL_ONE_MOODS]
 
+updateDisplays()
+messageEl.textContent = "Click START to begin!"
 const LEVEL_TWO_MOODS = [
   { image: "./assets/mood1.png", name: "mood1" },
   { image: "./assets/mood2.png", name: "mood2" },
