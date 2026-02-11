@@ -3,20 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="script.js"></script>
+    <script defer src="moodgame.js"></script>
     <link rel="stylesheet" href="./style.css" />
     <title>Mood Card Game</title>
   </head>
   <body>
     <div class="container">
       <h1>Mood Card Game</h1>
-      <div id="message">Find the matches!</div>
+      <div id="player-info">Player: <span id="player-name">Guest</span></div>
+      <div id="game-info">
+        <div id="message">Click START to begin!</div>
+        <div id="stats">
+          <div id="leveDisplay">Level: 1</div>
+          <div id="scoreDisplay">Score: 0</div>
+          <div class="livesDisplay">Lives: 3</div>
+          <div class="timeDisplay">Time: 15s</div>
+        </div>
+      </div>
+      <!-- <div id="message">Find the matches!</div>
 
       <div id="scoreboard">
         <div id="scoreDisplay">Score : 0</div>
         <div class="livesDisplay">Lives : 3</div>
         <div class="timeDisplay">Time : 15s</div>
-      </div>
+      </div> -->
 
       <div id="board">
         <div class="rectangular" id="0"></div>
@@ -47,15 +57,17 @@
         <img src="./assets/mood8.png" />
       </div> -->
       <div class="controls">
-        <button id="start">Start</button>
-        <button id="reset">Reset Game</button>
-        <button id="music" audio controls muted>
-          <source
-            src="KiiiKiii – I DO ME ｜ Official Instrumental.mp3"
-            type="audio/mpeg"
-          />
-          Music
-        </button>
+        <button id="start" class="start-btn">START</button>
+        <button id="reset" class="reset-btn">RESET GAME</button>
+        <button id="music" class="music-btn">Music</button>
+        <button
+          id="leaderboard"
+          class="leaderboard-btn"
+          style="display: none"
+        ></button>
+
+        <!-- countdown overlay-->
+        <!-- complete later -->
       </div>
     </div>
   </body>
