@@ -290,18 +290,6 @@ function levelUp() {
   }, 2000)
 }
 
-function endGame(isWin) {
-  lockBoard = true
-  clearInterval(timerInterval)
-  if (isWin) {
-    messageEl.textContent = "Congratulations! You win!"
-    if (leaderboardBtn) leaderboardBtn.style.display = "block"
-  } else {
-    messageEl.textContent = "Game Over! Try again!"
-  }
-  // Optionally, show a popup or reset the game here
-}
-
 // and if there is no match then reset the turn and say try again//
 // } else {
 //   lockBoard = true
@@ -342,7 +330,3 @@ function endGame(isWin) {
 //   if (card === mood1) return
 // }
 // function handleClick(event) {}
-
-/*----------------------------- Event Listeners -----------------------------*/
-startBtn.addEventListener("click", init)
-resetBtn.addEventListener("click", init)
