@@ -179,27 +179,51 @@ function endMemorizationPhase() {
 
 function startTimer() {
   clearInterval(timerInterval)
+  timeLeft = 15
+  updateDisplays()
+
+  timerInterval = setInterval(() => {
+    timeLeft--
+    updateDisplays()
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval)
+      messageEl.textContent = "Time's up Game Over"
+      lockBoard = true
+      endGame(false)
+    }
+  }, 1000)
 }
 
-// this thing won't allow the same matches to be clicked twice or the same card to be clicked twice//
 function flipCard(event) {
-  if (lockBoard) return
+  if (!gameStarted) {
+    messageEl.textContent = " Click START button first!"
+    return
+  }
+  if (lockBoard || isMemorizing) return
   const clickedCard = event.currentTarget
   if (clickedCard === firstCard || clickedCard.classList.contains("flipped"))
     return
-  const cardId = parseInt(clickedCard.id)
-  clickedCard.classList.add("flipped")
-  clickedCard.innerHTML = `<img src="${board[cardId].image}" alt="${board[cardId].name}">`
-
-  if (!firstCard) {
-    firstCard = clickedCard
-    firstCard.dataset.name = board[cardId].name
-  } else {
-    secondCard = clickedCard
-    secondCard.dataset.name = board[cardId].name
-    checkForMatch()
-  }
 }
+// this thing won't allow the same matches to be clicked twice or the same card to be clicked twice//
+// function flipCard(event) {
+//   if (lockBoard) return
+//   const clickedCard = event.currentTarget
+
+const cardId = parseInt(clickedCard.id)
+if (cardId >= board.length) return
+clickedCard.classList.add("flipped")
+clickedCard.innerHTML = `<img src="${board[cardId].image}" alt="${board[cardId].name}">`
+
+if (!firstCard) {
+  firstCard = clickedCard
+  // firstCard.dataset.name = board[cardId].name
+} else {
+  secondCard = clickedCard
+  // secondCard.dataset.name = board[cardId].name
+  lockBoard = true
+  checkForMatch()
+}
+
 //the contain = checking if the html has this item inside another //
 //get the card index (the parseint) it will literally translate the string to a number
 //now we flip the card//
