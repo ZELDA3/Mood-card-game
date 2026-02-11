@@ -82,7 +82,7 @@ function init() {
   //update the display//
   updateDisplays()
   messageEl.textContent = "Click START to begin!"
-  // resret the cards//
+  // reset the cards//
   resetCards()
 
   //hide overlays for now //
@@ -100,157 +100,155 @@ function init() {
   function resetCards() {
     const moodPairs = [...MOOD_DATA, ...MOOD_DATA]
     board = moodPairs.sort(() => Math.random() - 0.5)
-  }
 
-  //reset all cards to show the pattern//
-  cardEls.forEach((card, index) => {
-    card.classList.remove("flipped")
-    card.innerHTML = ""
-    card.style.pointerEvents = "auto"
-    // we will set data attributes//
-    if (index < board.length) {
-      card.dataset.name = board[index].name
+    //reset all cards to show the pattern//
+    cardEls.forEach((card, index) => {
+      card.classList.remove("flipped")
+      card.innerHTML = ""
+      card.style.pointerEvents = "auto"
+      // we will set data attributes//
+      if (index < board.length) {
+        card.dataset.name = board[index].name
+      }
+    })
+    // messageEl.textContent = "Find the matches!" // to clear any images//
+  }
+  //render takes the code and turn it into something the user see it also update the data and keep things in sync //
+
+  function updateDisplays() {
+    scoreEl.textContent = `Score: ${scoreDisplay}`
+    livesEl.textContent = `Lives: ${liveDisplay}`
+    timeEl.textContent = `Time: ${timeLeft}s`
+
+    if (levelEl) {
+      levelEl.textContent = `Level: ${currentLevel}`
     }
+    // cardEls.forEach((card, index) => {
+    //   if (board[index])
+    //     card.innerHTML = `<img src ="${board[index].image}" alt = "${board[index].name}">`
+    // })
+  }
+
+  function startGame() {
+    if (gameStarted) return
+    gameStarted = true
+    lockBoard = true
+    startMemorizationPhase()
+  }
+  function startMemorizationPhase() {
+    isMemorizing = true
+    messageEl.textContent = "Get ready to memorize!"
+  }
+
+  // to make it work //
+  // init()
+  // this will prevent us from clicking if the board is locked //
+  // showing all cards now//
+  cardEls.forEach((card, index) => {
+    if (index < board.length) {
+      card.classList.add("flipped")
+      card.innerHTML = `<img src="${board[index].image}" alt="${board[index].name}">`
+    }
+    // card.addEventListener("click", flipCard)
   })
-  // messageEl.textContent = "Find the matches!" // to clear any images//
-}
-//render takes the code and turn it into something the user see it also update the data and keep things in sync //
-
-function updateDisplays() {
-  scoreEl.textContent = `Score: ${scoreDisplay}`
-  livesEl.textContent = `Lives: ${liveDisplay}`
-  timeEl.textContent = `Time: ${timeLeft}s`
-
-  if (levelEl) {
-    levelEl.textContent = `Level: ${currentLevel}`
-  }
-  // cardEls.forEach((card, index) => {
-  //   if (board[index])
-  //     card.innerHTML = `<img src ="${board[index].image}" alt = "${board[index].name}">`
-  // })
-}
-
-function startGame() {
-  if (gameStarted) return
-  gameStarted = true
-  lockBoard = true
-  startMemorizationphase()
-}
-function startMemorizationphase() {
-  isMemorizing = true
-  messageEl.textContent = "Get ready to memorize!"
-}
-
-// to make it work //
-// init()
-// this will prevent us from clicking if the board is locked //
-// showing all cards now//
-cardEls.forEach((card, index) => {
-  if (index < board.length) {
-    card.classList.add("flipped")
-    card.innerHTML = `<img src="${board[index].image}" alt="${board[index].name}">`
-  }
-  // card.addEventListener("click", flipCard)
-})
-// showing the countdown overlay so -- is deducting a life//
-countdownOverlay.style.display = "flex"
-countdownText.textContent = "Memorize the cards"
-let countdown = 3
-countdownNumber.textContent = countdown
-const countdownInterval = setInterval(() => {
-  countdown--
-  if (countdown > 0) {
-    countdownNumber.textContent = countdown
-  } else {
-    clearInterval(countdownInterval)
-    endMemorizationPhase()
-  }
-}, 1000)
-
-function endMemorizationPhase() {
-  isMemorizing = false
-  countdownOverlay.style.display = "none"
-
-  //  we can now hide all cards after showing them for 3 seconds//
-  messageEl.textContent = "Find the matches"
-  lockBoard = false
-  startTimer()
-}
-
-function startTimer() {
-  clearInterval(timerInterval)
-  timeLeft = 15
-  updateDisplays()
-
-  timerInterval = setInterval(() => {
-    timeLeft--
-    updateDisplays()
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval)
-      messageEl.textContent = "Time's up Game Over"
-      lockBoard = true
-      endGame(false)
+  // showing the countdown overlay so -- is deducting a life//
+  countdownOverlay.style.display = "flex"
+  countdownText.textContent = "Memorize the cards"
+  let countdown = 3
+  countdownNumber.textContent = countdown
+  const countdownInterval = setInterval(() => {
+    countdown--
+    if (countdown > 0) {
+      countdownNumber.textContent = countdown
+    } else {
+      clearInterval(countdownInterval)
+      endMemorizationPhase()
     }
   }, 1000)
-}
 
-function flipCard(event) {
-  if (!gameStarted) {
-    messageEl.textContent = " Click START button first!"
-    return
+  function endMemorizationPhase() {
+    isMemorizing = false
+    countdownOverlay.style.display = "none"
+
+    //  we can now hide all cards after showing them for 3 seconds//
+    messageEl.textContent = "Find the matches"
+    lockBoard = false
+    startTimer()
   }
-  if (lockBoard || isMemorizing) return
-  const clickedCard = event.currentTarget
-  if (clickedCard === firstCard || clickedCard.classList.contains("flipped"))
-    return
-}
-// this thing won't allow the same matches to be clicked twice or the same card to be clicked twice//
-// function flipCard(event) {
-//   if (lockBoard) return
-//   const clickedCard = event.currentTarget
 
-const cardId = parseInt(clickedCard.id)
-if (cardId >= board.length) return
-clickedCard.classList.add("flipped")
-clickedCard.innerHTML = `<img src="${board[cardId].image}" alt="${board[cardId].name}">`
+  function startTimer() {
+    clearInterval(timerInterval)
+    timeLeft = 15
+    updateDisplays()
 
-if (!firstCard) {
-  firstCard = clickedCard
-  // firstCard.dataset.name = board[cardId].name
-} else {
-  secondCard = clickedCard
-  // secondCard.dataset.name = board[cardId].name
-  lockBoard = true
-  checkForMatch()
-}
+    timerInterval = setInterval(() => {
+      timeLeft--
+      updateDisplays()
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval)
+        messageEl.textContent = "Time's up Game Over"
+        lockBoard = true
+        endGame(false)
+      }
+    }, 1000)
+  }
 
-//the contain = checking if the html has this item inside another //
-//get the card index (the parseint) it will literally translate the string to a number
-//now we flip the card//
-// we called the card by the image and name what we did last time was add index which it did not have //
+  function flipCard(event) {
+    if (!gameStarted) {
+      messageEl.textContent = " Click START button first!"
+      return
+    }
+    if (lockBoard || isMemorizing) return
+    const clickedCard = event.currentTarget
+    if (clickedCard === firstCard || clickedCard.classList.contains("flipped"))
+      return
+  }
+  // this thing won't allow the same matches to be clicked twice or the same card to be clicked twice//
+  // function flipCard(event) {
+  //   if (lockBoard) return
+  //   const clickedCard = event.currentTarget
 
-// function showCard(event) {
-//   if (event.target.id) {
-//     console.log(event.target.id)
-//     event.target.innerHTML = `<img src ="${board[0].image}" alt = "${board[0].name}">`
-//   }
-// }
+  const cardId = parseInt(clickedCard.id)
+  if (cardId >= board.length) return
+  clickedCard.classList.add("flipped")
+  clickedCard.innerHTML = `<img src="${board[cardId].image}" alt="${board[cardId].name}">`
 
-// what we are doing no wis storing the clicked card the first pair and for the second else is the second pair and check if they match true or false//
+  if (!firstCard) {
+    firstCard = clickedCard
+    // firstCard.dataset.name = board[cardId].name
+  } else {
+    secondCard = clickedCard
+    // secondCard.dataset.name = board[cardId].name
+    lockBoard = true
+    checkForMatch()
+  }
 
-// we call the match function//
-function checkForMatch() {
-  const isMatch = firstCard.dataset.name === secondCard.dataset.name
-  // match found then we check if they won the game//
-  if (isMatch) {
-    scoreDisplay += 10
-    matchedCards.push(firstCard, secondCard)
-    // if (matchedCards.length === cardEls.length) {
+  //the contain = checking if the html has this item inside another //
+  //get the card index (the parseint) it will literally translate the string to a number
+  //now we flip the card//
+  // we called the card by the image and name what we did last time was add index which it did not have //
+
+  // function showCard(event) {
+  //   if (event.target.id) {
+  //     console.log(event.target.id)
+  //     event.target.innerHTML = `<img src ="${board[0].image}" alt = "${board[0].name}">`
+  //   }
+  // }
+
+  // what we are doing no wis storing the clicked card the first pair and for the second else is the second pair and check if they match true or false//
+
+  // we call the match function//
+  function checkForMatch() {
+    const isMatch = firstCard.dataset.name === secondCard.dataset.name
+    // match found then we check if they won the game//
+    if (isMatch) {
+      scoreDisplay += 10
+      matchedCards.push(firstCard, secondCard)
+      // if (matchedCards.length === cardEls.length) {
       messageEl.textContent = "Matched +10 points"
       if (currentLevel === 1 && scoreDisplay >= LEVEL_ONE_SCORE) {
         setTimeout(levelUp, 500)
-      }
-      else if (matchedCards.length === (MOOD_DATA.length * 2)) {
+      } else if (matchedCards.length === MOOD_DATA.length * 2) {
         if (currentLevel === 1) {
           setTimeout(levelUp, 500)
         } else {
@@ -258,48 +256,83 @@ function checkForMatch() {
           setTimeout(() => endGame(true), 500)
         }
       }
-      resetTurn(
-      } else {
-        messageEl.textContent ="No match try again"
+      updateDisplays()
+    } else {
+      messageEl.textContent = "No match try again"
       setTimeout(() => {
-      firstCard.classList.remove("flipped")
-      secondCard.classList.remove("flipped")
+        firstCard.classList.remove("flipped")
+        secondCard.classList.remove("flipped")
+        firstCard.innerHTML = ""
+        secondCard.innerHTML = ""
+        // Optionally, reset turn here if needed
+      }, 1000)
+
+      liveDisplay--
+      if (liveDisplay <= 0) {
+        clearInterval(timerInterval)
+        setTimeout(() => endGame(false), 1000)
       }
-      )
-    // } else {
-      // messageEl.textContent = "Matched!"
-    }
-    // and if there is no match then reset the turn and say try again//
-  // } else {
-  //   lockBoard = true
-  //   messageEl.textContent = "Try again"
-
-    // flip the cards if there is a delay//
-    // setTimeout(() => {
-    //   firstCard.classList.remove("flipped")
-    //   secondCard.classList.remove("flipped")
-    //   firstCard.innerHTML = ""
-    //   secondCard.innerHTML = ""
-      // reset turn will flip the cards over if they did not match + clear variables to null (first+second cards) also it let the player click again on board//
-
-      resetTurn()
-    }, 1000)
-
-    // now we will make the live display deduct one life if not matched// also the thing we used is different than += or == now it's <= which means it's less than or equal zero = so to sum it up if your lives are 0 then display will pop a message saying no lives left // the thing after the livesDisplay mean -- to take the number and subtract 1//
-    liveDisplay--
-    if (liveDisplay <= 0) {
-      messageEl.textContent = " No Lives Left "
-      lockBoard = true
+      updateDisplays()
     }
   }
 
-  render()
+  // } else {
+  // messageEl.textContent = "Matched!"
+}
+function levelUp() {
+  clearInterval(timerInterval)
+  currentLevel = 2
+  messageEl.textContent = "Level Up"
+  updateDisplays()
+  setTimeout(() => {
+    resetCards()
+    startMemorizationPhase()
+  }, 2000)
 }
 
-function resetTurn() {
-  ;[firstCard, secondCard] = [null, null]
-  lockBoard = false
+function endGame(isWin) {
+  lockBoard = true
+  clearInterval(timerInterval)
+  if (isWin) {
+    messageEl.textContent = "Congratulations! You win!"
+    if (leaderboardBtn) leaderboardBtn.style.display = "block"
+  } else {
+    messageEl.textContent = "Game Over! Try again!"
+  }
+  // Optionally, show a popup or reset the game here
 }
+
+// and if there is no match then reset the turn and say try again//
+// } else {
+//   lockBoard = true
+//   messageEl.textContent = "Try again"
+
+// flip the cards if there is a delay//
+// setTimeout(() => {
+//   firstCard.classList.remove("flipped")
+//   secondCard.classList.remove("flipped")
+//   firstCard.innerHTML = ""
+//   secondCard.innerHTML = ""
+// reset turn will flip the cards over if they did not match + clear variables to null (first+second cards) also it let the player click again on board//
+
+//   resetTurn()
+// }, 1000)
+
+// now we will make the live display deduct one life if not matched// also the thing we used is different than += or == now it's <= which means it's less than or equal zero = so to sum it up if your lives are 0 then display will pop a message saying no lives left // the thing after the livesDisplay mean -- to take the number and subtract 1//
+//   liveDisplay--
+//   if (liveDisplay <= 0) {
+//     messageEl.textContent = " No Lives Left "
+//     lockBoard = true
+//   }
+// }
+
+//   render()
+// }
+
+// function resetTurn() {
+//   ;[firstCard, secondCard] = [null, null]
+//   lockBoard = false
+// }
 
 // function handleMatch(event)
 
