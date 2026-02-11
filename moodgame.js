@@ -50,60 +50,107 @@ const LEVEL_ONE_MOODS = [
 ]
 let MOOD_DATA = [...LEVEL_ONE_MOODS]
 
-updateDisplays()
-messageEl.textContent = "Click START to begin!"
-const LEVEL_TWO_MOODS = [
-  { image: "./assets/mood1.png", name: "mood1" },
-  { image: "./assets/mood2.png", name: "mood2" },
-  { image: "./assets/mood3.png", name: "mood3" },
-  { image: "./assets/mood4.png", name: "mood4" },
-  { image: "./assets/mood5.png", name: "mood5" },
-  { image: "./assets/mood6.png", name: "mood6" },
-  { image: "./assets/mood7.png", name: "mood7" },
-  { image: "./assets/mood8.png", name: "mood8" },
-]
+// const LEVEL_TWO_MOODS = [
+//   { image: "./assets/mood1.png", name: "mood1" },
+//   { image: "./assets/mood2.png", name: "mood2" },
+//   { image: "./assets/mood3.png", name: "mood3" },
+//   { image: "./assets/mood4.png", name: "mood4" },
+//   { image: "./assets/mood5.png", name: "mood5" },
+//   { image: "./assets/mood6.png", name: "mood6" },
+//   { image: "./assets/mood7.png", name: "mood7" },
+//   { image: "./assets/mood8.png", name: "mood8" },
+// ]
 
-let MOOD_DATA = [...LEVEL_ONE_MOODS]
+// let MOOD_DATA = [...LEVEL_ONE_MOODS]
 /*-------------------------------- Functions
 --------------------------------*/
 
 function init() {
+  clearInterval(timerInterval)
+  //reset game state
   scoreDisplay = 0
   liveDisplay = 3
+  currentLevel = 1
   matchedCards = []
-  lockBoard = false
+  lockBoard = true
   firstCard = null
   secondCard = null
+  timeLeft = 15
+  gameStarted = false
+  //set level 1 moods
+  MOOD_DATA = [...LEVEL_ONE_MOODS]
+  //update the display//
+  updateDisplays()
+  messageEl.textContent = "Click START to begin!"
+  // resret the cards//
+  resetCards()
 
-  scoreEl.textContent = `Score: ${scoreDisplay}`
-  livesEl.textContent = `Lives: ${liveDisplay}`
-  timeEl.textContent = `Time: 15`
+  //hide overlays for now //
+  countdownOverlay.computedStyleMap.display = "none"
+  document.getElementById("game-popup").style.display = "none"
+  //hide the leaderboard button until they win we will update it//
+
+  if (leaderboardBtn) leaderboardBtn.style.display = "none"
+
+  // scoreEl.textContent = `Score: ${scoreDisplay}`
+  // livesEl.textContent = `Lives: ${liveDisplay}`
+  // timeEl.textContent = `Time: 15`
   // pairs and shuffle//
-  const moodPairs = [...MOOD_DATA, ...MOOD_DATA]
-  board = moodPairs.sort(() => Math.random() - 0.5)
+
+  function resetCards() {
+    const moodPairs = [...MOOD_DATA, ...MOOD_DATA]
+    board = moodPairs.sort(() => Math.random() - 0.5)
+  }
 
   //reset all cards to show the pattern//
-  cardEls.forEach((card) => {
+  cardEls.forEach((card, index) => {
     card.classList.remove("flipped")
     card.innerHTML = ""
+    card.style.pointerEvents = "auto"
+    // we will set data attributes//
+    if (index < board.length) {
+      card.dataset.name = board[index].name
+    }
   })
-  messageEl.textContent = "Find the matches!" // to clear any images//
+  // messageEl.textContent = "Find the matches!" // to clear any images//
 }
 //render takes the code and turn it into something the user see it also update the data and keep things in sync //
 
-function render() {
+function updateDisplays() {
   scoreEl.textContent = `Score: ${scoreDisplay}`
   livesEl.textContent = `Lives: ${liveDisplay}`
+  timeEl.textContent = `Time: ${timeLeft}s`
+
+  if (levelEl) {
+    levelEl.textContent = `Level: ${currentLevel}`
+  }
   // cardEls.forEach((card, index) => {
   //   if (board[index])
   //     card.innerHTML = `<img src ="${board[index].image}" alt = "${board[index].name}">`
   // })
 }
+
+function startGame() {
+  if (gameStarted) return
+  gameStarted = true
+  lockBoard = true
+  startMemorizationphase()
+}
+function startMemorizationphase() {
+  isMemorizing = true
+  messageEl.textContent = "Get ready to memorize!"
+}
+
 // to make it work //
-init()
+// init()
 // this will prevent us from clicking if the board is locked //
-cardEls.forEach((card) => {
-  card.addEventListener("click", flipCard)
+// showing all cards now//
+cardEls.forEach((card, index) => {
+  if (index < board.length) {
+    card.classList.add("flipped")
+    card.innerHTML = `<img src="${board[index].image}" alt="${board[index].name}">`
+  }
+  // card.addEventListener("click", flipCard)
 })
 // this thing won't allow the same matches to be clicked twice or the same card to be clicked twice//
 function flipCard(event) {
