@@ -245,22 +245,41 @@ function checkForMatch() {
   if (isMatch) {
     scoreDisplay += 10
     matchedCards.push(firstCard, secondCard)
-    if (matchedCards.length === cardEls.length) {
-      messageEl.textContent = "YOU WON!"
-    } else {
-      messageEl.textContent = "Matched!"
-    }
-    // and if there is no match then reset the turn and say try again//
-  } else {
-    lockBoard = true
-    messageEl.textContent = "Try again"
-
-    // flip the cards if there is a delay//
-    setTimeout(() => {
+    // if (matchedCards.length === cardEls.length) {
+      messageEl.textContent = "Matched +10 points"
+      if (currentLevel === 1 && scoreDisplay >= LEVEL_ONE_SCORE) {
+        setTimeout(levelUp, 500)
+      }
+      else if (matchedCards.length === (MOOD_DATA.length * 2)) {
+        if (currentLevel === 1) {
+          setTimeout(levelUp, 500)
+        } else {
+          clearInterval(timerInterval)
+          setTimeout(() => endGame(true), 500)
+        }
+      }
+      resetTurn(
+      } else {
+        messageEl.textContent ="No match try again"
+      setTimeout(() => {
       firstCard.classList.remove("flipped")
       secondCard.classList.remove("flipped")
-      firstCard.innerHTML = ""
-      secondCard.innerHTML = ""
+      }
+      )
+    // } else {
+      // messageEl.textContent = "Matched!"
+    }
+    // and if there is no match then reset the turn and say try again//
+  // } else {
+  //   lockBoard = true
+  //   messageEl.textContent = "Try again"
+
+    // flip the cards if there is a delay//
+    // setTimeout(() => {
+    //   firstCard.classList.remove("flipped")
+    //   secondCard.classList.remove("flipped")
+    //   firstCard.innerHTML = ""
+    //   secondCard.innerHTML = ""
       // reset turn will flip the cards over if they did not match + clear variables to null (first+second cards) also it let the player click again on board//
 
       resetTurn()
