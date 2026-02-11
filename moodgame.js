@@ -152,6 +152,35 @@ cardEls.forEach((card, index) => {
   }
   // card.addEventListener("click", flipCard)
 })
+// showing the countdown overlay so -- is deducting a life//
+countdownOverlay.style.display = "flex"
+countdownText.textContent = "Memorize the cards"
+let countdown = 3
+countdownNumber.textContent = countdown
+const countdownInterval = setInterval(() => {
+  countdown--
+  if (countdown > 0) {
+    countdownNumber.textContent = countdown
+  } else {
+    clearInterval(countdownInterval)
+    endMemorizationPhase()
+  }
+}, 1000)
+
+function endMemorizationPhase() {
+  isMemorizing = false
+  countdownOverlay.style.display = "none"
+
+  //  we can now hide all cards after showing them for 3 seconds//
+  messageEl.textContent = "Find the matches"
+  lockBoard = false
+  startTimer()
+}
+
+function startTimer() {
+  clearInterval(timerInterval)
+}
+
 // this thing won't allow the same matches to be clicked twice or the same card to be clicked twice//
 function flipCard(event) {
   if (lockBoard) return
