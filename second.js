@@ -30,15 +30,29 @@ function endGame(isWin) {
 function saveToLeaderboard() {
   const username = localStorage.getItem("moodGameUsername") || "Guest"
   const scoreData = {
-    username: username
-    score: scoreDisplay
-    level: currentLevel
-    data: new DataTransfer().localDataString()
-    timestamp: new Date().getTime()
+    username: username,
+    score: scoreDisplay,
+    level: currentLevel,
+    data: new DataTransfer().localDataString(),
+    timestamp: new Date().getTime(),
   }
-  let leaderboard = JSON.parse(localStorage.getItem('moodGameLeaderboard')) || []
+  let leaderboard =
+    JSON.parse(localStorage.getItem("moodGameLeaderboard")) || []
   leaderboard.push(scoreData)
 
+  leaderboard.sort((a, b) => {
+    if (b.score === a.score) {
+      return a.timestamp - b.timestamp
+    }
+    return b.score - a.score
+  })
+  leaderboard = leaderboard.slice(0, 10)
+  localStorage.setItem("moodGameLeaderboard", JSON.stringify(leaderboard))
+}
+
+function resetTurn() {
+  ;[firstCard, secondCard] = [null, null]
+  lockBoard = false
 }
 
 //     messageEl.textContent = "Congratulations! You win!"
@@ -52,3 +66,24 @@ function saveToLeaderboard() {
 /*----------------------------- Event Listeners -----------------------------*/
 startBtn.addEventListener("click", init)
 resetBtn.addEventListener("click", init)
+cardEls.forEach((card) => {
+  card.addEventListener("click", flipCard)
+})
+function flipCard(event) {
+  if (lockBoard) return
+  const clickedCard = event.currentTarget
+}
+// will add music lastly//
+// if (musicBtn) {
+//   musicBtn.addEventListener("click", function() {
+//     this.innerHTML = this.innerHTML.includes('🔊') ? '🔇 Music' : '🔊 Music';
+//   }
+// }
+
+if (leaderboardBtn) {
+  leaderboardBtn.addEventListener("click", function () {
+    window.location.href = "leaderboard.html"
+  })
+}
+
+init()

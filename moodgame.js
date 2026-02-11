@@ -204,9 +204,9 @@ function init() {
       return
   }
   // this thing won't allow the same matches to be clicked twice or the same card to be clicked twice//
-  // function flipCard(event) {
-  //   if (lockBoard) return
-  //   const clickedCard = event.currentTarget
+  function flipCard(event) {
+   if (lockBoard) return
+   const clickedCard = event.currentTarget
 
   const cardId = parseInt(clickedCard.id)
   if (cardId >= board.length) return
@@ -278,6 +278,7 @@ function init() {
 
   // } else {
   // messageEl.textContent = "Matched!"
+  }
 }
 function levelUp() {
   clearInterval(timerInterval)
