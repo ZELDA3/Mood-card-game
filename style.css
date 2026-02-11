@@ -1,18 +1,18 @@
 * {
-  margin: 0
-  padding: 0
-  box-sizing: border-box
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
 
 body {
   min-height: 100vw;
   width: 100vw;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #b77b82 0%, #873260 100%)
-  font-family: 'Arial', sans-serif;
-  overflow-x: hidden;}
+  background: linear-gradient(135deg, #b77b82 0%, #873260 100%);
+  font-family: "Arial", sans-serif;
+  overflow-x: hidden;
+}
 
 .container {
   max-width: 900px;
@@ -31,64 +31,64 @@ h1 {
 #player-info {
   background: rgba(255, 255, 255, 0.2);
   padding: 10px 20px;
-   border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    color: white;
-    display: inline-block;
-    font-weight: bold;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
 }
 
 #game-info {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 30px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 #message {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 15px;
-    min-height: 30px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 15px;
+  min-height: 30px;
 }
 
 #stats {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 #stats > div {
-    background: white;
-    padding: 12px 25px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: #873260;
-    min-width: 140px;
-    font-size: 1.2rem;
-    transition: transform 0.3s;
+  background: white;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #873260;
+  min-width: 140px;
+  font-size: 1.2rem;
+  transition: transform 0.3s;
 }
 #stats > div:hover {
-    transform: translateY(-3px);
+  transform: translateY(-3px);
 }
 
 #board {
   display: grid;
-    grid-template-columns: repeat(4, 110px);
-    grid-template-rows: repeat(4, 110px);
-    gap: 15px;
-    padding: 25px;
-    justify-content: center;
-    width: fit-content;
-    margin: 0 auto 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.2);
+  grid-template-columns: repeat(4, 110px);
+  grid-template-rows: repeat(4, 110px);
+  gap: 15px;
+  padding: 25px;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .rectangular {
@@ -96,39 +96,38 @@ h1 {
   height: 110px;
   background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='50' height='50' patternTransform='scale(3) rotate(40)'><rect x='0' y='0' width='100%' height='100%' fill='%23e15283ff'/><path d='M29.688 0v1.562h3.125V0Zm-9.375 0h-3.125v1.562h3.125zm9.375 48.437V50h3.125v-1.563zm-12.5 0V50h3.125v-1.563zm12.5-3.125h-3.125v3.125h3.125zm-3.125-3.125h-3.125v3.125h3.125zm-6.25 3.125v3.125h3.125v-3.125zm28.125-12.5H50v-3.125h-1.562ZM50 20.312v-3.125h-1.562v3.125zm-4.687 9.375h3.125v-3.125h-3.125zm0-6.25h-3.125v3.125h3.125zm3.125 0v-3.125h-3.125v3.125zM0 29.687v3.125h1.563v-3.125zm1.563-12.5H0v3.125h1.563zm0 9.375v3.125h3.125v-3.125zm3.125-3.125v3.125h3.125v-3.125zm0-3.125H1.563v3.125h3.125Zm21.875-18.75v3.125h3.125V1.562Zm-3.125 3.125v3.125h3.125V4.687Zm0-3.125h-3.125v3.125h3.125z'  stroke-width='1' stroke='none' fill='%234b8cecff'/><path d='M14.063 18.75V25h3.125v3.125h3.125v3.125h3.125v3.125h3.125V31.25h3.125v-3.125h3.125V25h3.125v-6.25h-3.125v-3.125h-6.25v3.125h-3.125v-3.125h-6.25v3.125z'  stroke-width='1' stroke='none' fill='%239c27b0ff'/><path d='M37.5 40.625h3.125V37.5H37.5Zm3.125 3.125h3.125v-3.125h-3.125zm3.125 3.125h3.125V43.75H43.75ZM50 50v-3.125h-3.125V50Zm-37.5-9.375V37.5H9.375v3.125zM9.375 43.75v-3.125H6.25v3.125ZM6.25 46.875V43.75H3.125v3.125zM3.125 50v-3.125H0V50Zm37.5-37.5V9.375H37.5V12.5Zm3.125-3.125V6.25h-3.125v3.125Zm3.125-3.125V3.125H43.75V6.25Zm0-3.125H50V0h-3.125ZM12.5 12.5V9.375H9.375V12.5ZM6.25 9.375h3.125V6.25H6.25ZM3.125 6.25H6.25V3.125H3.125ZM0 3.125h3.125V0H0Z'  stroke-width='1' stroke='none' fill='%233f51b5ff'/></pattern></defs><rect width='800%' height='800%' transform='translate(-123,-57)' fill='url(%23a)'/></svg>");
   background-size: cover;
-    background-position: center;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-    position: relative;
+  background-position: center;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
 }
-
 
 .rectangular:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
 }
 
-.rectangular.flipped{
+.rectangular.flipped {
   transform: rotateY(180deg);
-    background-image: none;
-    background-color: white;
+  background-image: none;
+  background-color: white;
 }
 
 .rectangular img {
   width: 85%;
-    height: 85%;
-    object-fit: contain;
-    transform: rotateY(180deg);
-    border-radius: 8px;
+  height: 85%;
+  object-fit: contain;
+  transform: rotateY(180deg);
+  border-radius: 8px;
 }
 
 .rectangular:not(.flipped) img {
-    display: none;
+  display: none;
 }
 
 .rectangular.flipped img {
@@ -136,39 +135,91 @@ h1 {
 }
 
 .controls {
-   display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .controls button {
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s;
-    min-width: 160px;
-    font-weight: bold;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 160px;
+  font-weight: bold;
 }
 
 .start-btn {
-    background: linear-gradient(135deg, #e15283 0%, #9c27b0 100%);
-    color: white;
-    order: 2;
+  background: linear-gradient(135deg, #e15283 0%, #9c27b0 100%);
+  color: white;
+  order: 2;
 }
 
-
 .reset-btn {
-    background: linear-gradient(135deg, #FF6B6B 0%, #C92A2A 100%);
-    color: white;
-    order: 3;
+  background: linear-gradient(135deg, #ff6b6b 0%, #c92a2a 100%);
+  color: white;
+  order: 3;
 }
 
 .leaderboard-btn {
-    background: linear-gradient(135deg, #FFD700 0%, #FFA000 100%);
-    color: #333;
-    order: 4;
+  background: linear-gradient(135deg, #ffd700 0%, #ffa000 100%);
+  color: #333;
+  order: 4;
+}
+
+.controls button:hover {
+  transform: translateY(-5px);
+}
+
+.controls button:active {
+  transform: translateY(-2px);
+}
+
+#countdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#countdown-text {
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0 0 20px rgba(225, 82, 131, 0.8);
+}
+
+#countdown-number {
+  color: #e15283;
+  font-size: 8rem;
+  font-weight: bold;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

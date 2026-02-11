@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="moodgame.js"></script>
-    <script defer src="second.js"></script>
+    <!-- <script defer src="second.js"></script> -->
     <link rel="stylesheet" href="./style.css" />
     <title>Mood Card Game</title>
   </head>
@@ -15,10 +15,10 @@
       <div id="game-info">
         <div id="message">Click START to begin!</div>
         <div id="stats">
-          <div id="leveDisplay">Level: 1</div>
+          <!-- <div id="leveDisplay">Level: 1</div> -->
           <div id="scoreDisplay">Score: 0</div>
-          <div class="livesDisplay">Lives: 3</div>
-          <div class="timeDisplay">Time: 15s</div>
+          <!-- <div class="livesDisplay">Lives: 3</div>
+          <div class="timeDisplay">Time: 15s</div> -->
         </div>
       </div>
       <!-- <div id="message">Find the matches!</div>
@@ -60,10 +60,10 @@
       <div class="controls">
         <button id="start" class="start-btn">START</button>
         <button id="reset" class="reset-btn">RESET GAME</button>
-        <button id="music" class="music-btn">Music</button>
+        <!-- <button id="music" class="music-btn">Music</button>
         <button id="leaderboard" class="leaderboard-btn" style="display: none">
           leaderboard
-        </button>
+        </button> -->
 
         <!-- countdown overlay-->
       <div id="countdown-overlay" style="display: none;">
@@ -94,10 +94,10 @@ function restartGame() {
   document.getElementById('game-popup').style.display = 'none'
   init()
 }
-function viewLeaderboard() {
-  window.location.href = './leaderboard.html'
-}
-    </script>
+// function viewLeaderboard() {
+//   window.location.href = './leaderboard.html'
+// }
+//     </script>
 
   </body>
 </html>

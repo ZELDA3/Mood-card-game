@@ -30,7 +30,14 @@ Do you have the mental stamina to top the leaderboard? (only top 10 are visible)
 
 
 ### ​how does the game look like ?
-**![wireframe](https://www.figma.com/design/g8SFkUtXf5uk8j2oG0rDnV/Wireframing--Copy-?node-id=77-432&p=f&t=HKzV5Zedeliwtm27-0)**
+**![wireframe] (![alt text](<Screenshot 2026-02-12 020655.png>))**
+**![ScreenShots] (![Instructions&User](Screenshot_12-2-2026_15525_127.0.0.1.jpeg))**
+**![ScreenShots] (![Memorize](<Screenshot 2026-02-12 015233.png>))**
+**![ScreenShots] (![Matching](Screenshot_12-2-2026_15345_127.0.0.1.jpeg))**
+**![ScreenShots] (![Game completed](Screenshot_12-2-2026_1555_127.0.0.1.jpeg))**
+
+
+
 
 ## Getting Started
 **To get started on with this Game follow these steps**
