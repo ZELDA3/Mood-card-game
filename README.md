@@ -37,7 +37,7 @@ Do you have the mental stamina to top the leaderboard? (only top 10 are visible)
 **![Game completed] (![Game completed](Screenshot_12-2-2026_1555_127.0.0.1.jpeg))**
 
 
-
+# Visit the game and try it out !*[https://mood-card-game.surge.sh]
 
 ## Getting Started
 **To get started on with this Game follow these steps**
@@ -59,6 +59,5 @@ Do you have the mental stamina to top the leaderboard? (only top 10 are visible)
 ### ***this is an alpha version, beta will be tested and published as ver 2.0 ***
 
 ### ***Credits***
-**
-**
-**
+**![used this toturial for the pattern also to get the images on an assets/json file] : [https://youtu.be/xWdkt6KSirw?si=WNNiUXIU34qlRvIP]**
+**![These 7 steps that we used in tic tac toe helped me with structuring my javascript] : [https://pages.git.generalassemb.ly/modular-curriculum-all-courses/javascript-browser-game-tic-tac-toe-lab/canvas-landing-pages/seb]**
