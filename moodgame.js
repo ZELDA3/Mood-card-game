@@ -1,26 +1,15 @@
-alert("welcome! enjoy the game")
+alert("Welcome! Enjoy the game!")
 
 /*-------------------------------- Constants --------------------------------*/
-const MOODS = 0
-// const LEVEL_ONE_SCORE = 30
-// const LEVEL_TWO_SCORE = 60
 const MEMORIZE_TIME = 3000
-/*---------------------------- Variables (state) ----------------------------*/
 
-let rectangular = []
+/*---------------------------- Variables (state) ----------------------------*/
 let board = []
-let flippedCards = []
-let scoreDisplay = 0
-// let liveDisplay = 0
-let MOOD_BOARD = document.querySelector("#board")
 let firstCard = null
 let secondCard = null
 let lockBoard = false
 let matchedCards = []
-// let Score = 0
-// let currentLevel = 1
-// let timerInterval
-// let timeLeft = 90
+let score = 0
 let gameStarted = false
 let isMemorizing = false
 
@@ -28,18 +17,15 @@ let isMemorizing = false
 const cardEls = document.querySelectorAll(".rectangular")
 const messageEl = document.querySelector("#message")
 const scoreEl = document.querySelector("#scoreDisplay")
-// const livesEl = document.querySelector(".livesDisplay")
-// const timeEl = document.querySelector(".timeDisplay")
 const startBtn = document.querySelector("#start")
 const resetBtn = document.querySelector("#reset")
-// const musicBtn = document.querySelector("#music")
-// const levelEl = document.querySelector("#levelDisplay")
-// const leaderboardBtn = document.querySelector("#leaderboard")
 const countdownOverlay = document.querySelector("#countdown-overlay")
 const countdownNumber = document.querySelector("#countdown-number")
 const countdownText = document.querySelector("#countdown-text")
 
-const LEVEL_ONE_MOODS = [
+/*---------------------------- Game Data ----------------------------*/
+
+const MOOD_DATA = [
   { image: "./assets/mood1.png", name: "mood1" },
   { image: "./assets/mood2.png", name: "mood2" },
   { image: "./assets/mood3.png", name: "mood3" },
@@ -49,7 +35,7 @@ const LEVEL_ONE_MOODS = [
   { image: "./assets/mood7.png", name: "mood7" },
   { image: "./assets/mood8.png", name: "mood8" },
 ]
-let MOOD_DATA = [...LEVEL_ONE_MOODS]
+/*-------------------------------- Functions --------------------------------*/
 
 // const LEVEL_TWO_MOODS = [
 //   { image: "./assets/mood1.png", name: "mood1" },
@@ -85,7 +71,7 @@ function init() {
   updateScore()
   messageEl.textContent = "Click START to begin!"
   // reset the cards//
-  resetCards()
+  // resetCards()
 
   //hide overlays for now //
   countdownOverlay.style.display = "none"
